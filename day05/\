@@ -1,0 +1,23 @@
+#!/usr/bin/env python
+s1="The world is darwinian"
+s2="Chaos rules the world"
+s3="Darwinian rules apply to all"
+query="world apply chaos"
+from pandas import Series as ser
+import pandas as pd
+from sklearn.feature_extraction.text import TfidfVectorizer 
+from sklearn.metrics.pairwise import cosine_similarity
+tfidf=TfidfVectorizer()
+#cos=cosine_similarity()
+dataset=pd.read_csv('/home/ai11/lorem_ipsum',delimiter='\.',header=None)
+#m=tfidf.fit(dataset)
+#print tfidf.vocabulary_
+#ma=tfidf.fit_transform(dataset)
+#print ma
+q=ser(query)
+print type(q)
+print type(dataset.iloc[0])
+s=pd.concat([q,dataset.iloc[0]])
+ma=tfidf.fit_transform(s)
+c=cosine_similarity(ma)
+print c
